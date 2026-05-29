@@ -10,6 +10,8 @@
 
 <body>
 
+
+
 <div class="container">
 
     <!-- HEADER -->
@@ -29,7 +31,7 @@
     <!-- MAIN ACTIONS -->
     <div class="action-box">
 
-        <button id="sosBtn">🚨 SEND SOS</button>
+        <button onclick="sendSOS()" class="sos-btn">🚨 SOS</button>
 
         <button id="shareBtn">📤 SHARE LOCATION</button>
 
@@ -37,10 +39,7 @@
 
     </div>
 
-    <!-- NAVIGATION -->
-    <button onclick="window.location.href='dashboard.html'">
-        📊 OPEN EMERGENCY DASHBOARD
-    </button>
+   
 
     <!-- LOCATION SECTION -->
     <div class="location-box">
@@ -51,19 +50,6 @@
         <button id="locationBtn">GET CURRENT LOCATION</button>
     </div>
 
-    <!-- MAP -->
-   <div class="map-box">
-    <h2>🗺 Live Map</h2>
-
-    <iframe
-        id="mapFrame"
-        width="100%"
-        height="250"
-        style="border:0; border-radius:12px;"
-        loading="lazy"
-        src="https://www.google.com/maps?q=India&output=embed">
-    </iframe>
-</div>
 
 <div id="chatFloatBtn">💬</div>
 

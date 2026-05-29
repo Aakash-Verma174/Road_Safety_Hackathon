@@ -16,16 +16,7 @@ body{
     min-height:100vh;
 }
 
-.container, .dashboard{
-    width:90%;
-    max-width:520px;
-    background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(12px);
-    padding:20px;
-    border-radius:20px;
-    text-align:center;
-    box-shadow:0 10px 35px rgba(0,0,0,0.6);
-}
+
 
 @media (max-width: 768px){
 
@@ -475,4 +466,161 @@ button:hover{
     0%{box-shadow:0 0 10px red;}
     50%{box-shadow:0 0 25px red;}
     100%{box-shadow:0 0 10px red;}
+}
+
+/* LOGIN OVERLAY */
+#loginOverlay{
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,0.4);
+
+    backdrop-filter:blur(10px);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    z-index:99999;
+}
+
+/* LOGIN BOX */
+.login-box{
+    width:420px;
+
+    background:rgba(255,255,255,0.08);
+
+    border:1px solid rgba(255,255,255,0.1);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:15px;
+
+    box-shadow:0 0 25px rgba(0,0,0,0.4);
+
+    animation:fadeIn 0.5s ease;
+}
+
+.login-box h1{
+    color:white;
+    text-align:center;
+}
+
+.login-box p{
+    color:#cbd5e1;
+    text-align:center;
+    font-size:14px;
+}
+
+.login-box input,
+.login-box select{
+    padding:12px;
+
+    border:none;
+
+    border-radius:10px;
+
+    outline:none;
+
+    background:rgba(255,255,255,0.1);
+
+    color:white;
+}
+
+.login-box button{
+    padding:12px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:red;
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.login-box button:hover{
+    transform:scale(1.03);
+     box-shadow:0 0 25px rgb(255, 0, 0);
+}
+
+/* fade animation */
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media (max-width: 500px){
+
+    .login-box{
+        width:90%;
+        padding:25px;
+    }
+
+}
+
+html, body{
+    height:100%;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+}
+
+.login-box input{
+    width:100%;
+}
+
+body{
+    background:#0b1220;
+    color:white;
+    font-family:Arial;
+}
+
+.login-container{
+    width:300px;
+    margin:100px auto;
+    padding:20px;
+    background:rgba(255,255,255,0.08);
+    border-radius:15px;
+    text-align:center;
+    backdrop-filter:blur(10px);
+}
+
+input{
+    width:90%;
+    padding:10px;
+    margin:10px 0;
+    border:none;
+    border-radius:8px;
+}
+
+button{
+    width:95%;
+    padding:10px;
+    margin:8px 0;
+    background:red;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
 }

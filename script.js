@@ -4,24 +4,6 @@ const locationBtn = document.getElementById("locationBtn");
 const locationText = document.getElementById("locationText");
 const mapFrame = document.getElementById("mapFrame");
 
-locationBtn.addEventListener("click", () => {
-
-    navigator.geolocation.getCurrentPosition((position) => {
-
-        let lat = position.coords.latitude;
-        let lon = position.coords.longitude;
-
-        userLocation = `https://www.google.com/maps?q=${lat},${lon}`;
-
-        locationText.innerHTML =
-            `Lat: ${lat} <br> Lon: ${lon}`;
-
-        mapFrame.src =
-            `https://www.google.com/maps?q=${lat},${lon}&output=embed`;
-
-    });
-
-});
 
 // SOS
 document.getElementById("sosBtn").addEventListener("click", () => {
@@ -151,3 +133,70 @@ document.addEventListener("mousemove", (e) => {
 document.addEventListener("mouseup", () => {
     isDragging = false;
 });
+
+const enterBtn = document.getElementById("enterBtn");
+
+enterBtn.addEventListener("click", () => {
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    // SIMPLE VALIDATION
+    if(username.trim() === "" || password.trim() === "") {
+        alert("Enter username and password");
+        return;
+    }
+
+    // FAKE LOGIN CHECK (for hackathon only)
+    if(password.length < 3){
+        alert("Password too weak");
+        return;
+    }
+
+    // store user
+    localStorage.setItem("roadUser", username);
+
+    // hide login
+    document.getElementById("loginOverlay").style.display = "none";
+
+    alert("Login Successful 🚨");
+
+});
+
+function loginUser(){
+
+    const user = document.getElementById("username").value;
+
+    if(user === ""){
+        alert("Enter username");
+        return;
+    }
+
+    localStorage.setItem("role", "user");
+
+    window.location.href = "chat.html";
+}
+
+function loginAdmin(){
+
+    const user = document.getElementById("username").value;
+
+    if(user === ""){
+        alert("Enter username");
+        return;
+    }
+
+    localStorage.setItem("role", "admin");
+
+    window.location.href = "dashboard.html";
+}
+
+function sendSOS(){
+
+    let user = localStorage.getItem("user") || "Unknown";
+
+    let alert = {
+        name: user,
+        time: new Date(),
+    }
+}

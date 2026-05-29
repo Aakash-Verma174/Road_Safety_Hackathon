@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RoadSOS Login</title>
+    <link rel="stylesheet" href="landing.css">
+</head>
+
+<body>
+
+<div class="overlay">
+
+    <div class="login-box">
+
+        <h1>🚨 RoadSOS</h1>
+        <p>Emergency Response System</p>
+
+        <input type="text" id="username" placeholder="Username">
+
+        <input type="password" id="password" placeholder="Password">
+
+        <!-- MODERN WRAPPER -->
+        <div class="select-box">
+            <select id="role">
+                <option style="color: black;" value="">Select Role</option>
+                <option style="color: black;" value="user">👤 User</option>
+                <option style="color: black;" value="admin">🛠 Admin</option>
+            </select>
+        </div>
+
+        <button onclick="login()">Login</button>
+
+    </div>
+
+</div>
+
+<script src="landing.js"></script>
+</body>
+</html>

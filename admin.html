@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RoadSOS Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <h2>🚨 RoadSOS Admin</h2>
+
+        <button onclick="showSection('dashboard')">Dashboard</button>
+        <button onclick="showSection('map')">Live Map</button>
+        <button onclick="showSection('alerts')">Alerts</button>
+        <button onclick="showSection('analytics')">Analytics</button>
+        <button onclick="showSection('profile')">Profile</button>
+
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+
+        <div id="dashboard" class="card section active">
+            <h1>Dashboard</h1>
+            <div class="map-container">
+
+    <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=72.8000%2C21.1500%2C72.9000%2C21.2500&layer=mapnik"
+        style="border:0; width:100%; height:450px; border-radius:15px;">
+    </iframe>
+
+    </div>
+    
+      
+            
+            <p>Welcome Admin 🚨 Control Room Active</p>
+        </div>
+
+        <div id="map" class="card section">
+            <h1>Live Map</h1>
+            <div class="map-box">Google Map Area</div>
+        </div>
+
+        <div id="alerts" class="card section">
+            <h1>Emergency Alerts</h1>
+            <p>No active alerts</p>
+        </div>
+
+        <div id="analytics" class="card section">
+            <h1>Analytics</h1>
+            <p>Graphs will appear here</p>
+        </div>
+
+        <div id="profile" class="card section">
+            <h1>Admin Profile</h1>
+            <p>Admin details section</p>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="admin.js"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
+    async defer>
+</script>
+</body>
+</html>

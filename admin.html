@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>RoadSOS Admin Dashboard</title>
     <link rel="stylesheet" href="admin.css">
+    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" /> -->
 </head>
 
 <body>
@@ -15,18 +16,17 @@
 
         <h2>🚨 RoadSOS Admin</h2>
 
-        <button onclick="showSection('dashboard')">Dashboard</button>
-        <button onclick="showSection('map')">Live Map</button>
-        <button onclick="showSection('alerts')">Alerts</button>
-        <button onclick="showSection('analytics')">Analytics</button>
-        <button onclick="showSection('profile')">Profile</button>
-
+            <button onclick="showSection('dashboard')">Dashboard</button>
+            <button onclick="showSection('map')">Live Map</button>
+            <button onclick="showSection('alerts')">Alerts</button>
+            <button onclick="showSection('analytics')">Analytics</button>
+            <button onclick="showSection('profile')">Profile</button>
     </div>
 
     <!-- MAIN CONTENT -->
     <div class="main">
 
-        <div id="dashboard" class="card section active">
+        <div id="dashboard" class="section">
             <h1>Dashboard</h1>
             <div class="map-container">
 
@@ -40,27 +40,170 @@
       
             
             <p>Welcome Admin 🚨 Control Room Active</p>
+            <div class="stats">
+
+    <div class="stat-card">
+        <h2 id="totalAlerts">12</h2>
+        <p>Total Alerts</p>
+    </div>
+
+    <div class="stat-card">
+        <h2 id="activeCases">3</h2>
+        <p>Active Cases</p>
+    </div>
+
+    <div class="stat-card">
+        <h2 id="resolvedCases">9</h2>
+        <p>Resolved</p>
+    </div>
+
+    <div class="timeline-card">
+
+    <h2>Emergency Timeline</h2>
+
+    <div id="timeline">
+
+        <div class="event">
+            🚨 SOS received from Highway Area
         </div>
 
-        <div id="map" class="card section">
-            <h1>Live Map</h1>
-            <div class="map-box">Google Map Area</div>
+        <div class="event">
+            🚑 Rescue team dispatched
         </div>
 
-        <div id="alerts" class="card section">
-            <h1>Emergency Alerts</h1>
-            <p>No active alerts</p>
+        <div class="event">
+            ✅ Incident resolved
         </div>
 
-        <div id="analytics" class="card section">
-            <h1>Analytics</h1>
-            <p>Graphs will appear here</p>
+    </div>
+
+</div>
+
+<div class="cctv-grid">
+
+    <div class="camera-box">
+        <img src="./assets/Image_2.jpg" alt="Camera 1">
+    </div>
+
+    <div class="camera-box">
+        <img src="./assets/Image_1.jpg" alt="Camera 2">
+    </div>
+
+</div>
+
+</div>
         </div>
 
-        <div id="profile" class="card section">
-            <h1>Admin Profile</h1>
-            <p>Admin details section</p>
+        <div id="map" class="section">
+
+    <h1>🚨 Live Emergency Map</h1>
+
+    <p>Real-time location tracking system</p>
+
+    <div class="map-frame">
+
+        <iframe
+            src="https://www.openstreetmap.org/export/embed.html?bbox=72.8000%2C21.1500%2C72.9000%2C21.2500&layer=mapnik"
+            loading="lazy">
+        </iframe>
+
+    </div>
+
+    <div class="map-status">
+        🟢 System Online | No Active Threats
+    </div>
+
+</div>
+
+<div id="alerts" class="section">
+
+    <h1>🚨 Emergency Alerts Center</h1>
+
+    <p>Live SOS requests from users appear here</p>
+
+    <div id="alertList" class="alert-container">
+
+        <!-- Dynamic alerts will appear here -->
+
+        <div class="alert-card">
+            <h3>🚨 Sample Alert</h3>
+            <p>User: Demo User</p>
+            <p>Location: Ahmedabad</p>
+            <p>Time: Just now</p>
+
+            <span class="status pending">PENDING</span>
         </div>
+
+    </div>
+
+</div>
+
+      <div id="analytics" class="section">
+
+    <h1>📊 Emergency Analytics</h1>
+
+    <p>Real-time system insights</p>
+
+    <div class="charts-grid">
+
+        <div class="chart-box">
+            <h3>SOS Requests Trend</h3>
+            <canvas id="lineChart"></canvas>
+        </div>
+
+        <div class="chart-box">
+            <h3>Case Status</h3>
+            <canvas id="pieChart"></canvas>
+        </div>
+
+    </div>
+
+</div>
+
+       <div id="profile" class="section">
+
+    <h1>👤 Admin Profile</h1>
+
+    <div class="profile-card">
+
+        <div class="profile-left">
+
+            <div class="profile-pic">
+                <img src="./assets/Profile_pic.jpg  " alt="Admin Profile">
+            </div>
+
+            <h2 id="adminName">Admin Name</h2>
+            <p>Emergency Control Operator</p>
+
+        </div>
+
+        <div class="profile-right">
+
+            <div class="info">
+                <h3>Email</h3>
+                <p id="adminEmail">admin@roadsos.com</p>
+            </div>
+
+            <div class="info">
+                <h3>Role</h3>
+                <p>System Administrator</p>
+            </div>
+
+            <div class="info">
+                <h3>Location</h3>
+                <p>Control Center - Ahmedabad</p>
+            </div>
+
+            <div class="info">
+                <h3>Status</h3>
+                <p class="active-status">🟢 Active</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
     </div>
 
@@ -71,5 +214,7 @@
     src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
     async defer>
 </script>
+<!-- <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script> -->
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>

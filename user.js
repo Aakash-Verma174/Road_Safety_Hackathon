@@ -197,6 +197,6 @@ function sendSOS(){
 
     let alert = {
         name: user,
-        time: new Date(),
+        time: new Date()
     }
 }

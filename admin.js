@@ -3,25 +3,140 @@ function showSection(id){
     let sections = document.querySelectorAll(".section");
 
     sections.forEach(sec => {
-        sec.classList.remove("active");
+        sec.style.display = "none";
     });
 
-    document.getElementById(id).classList.add("active");
+    document.getElementById(id).style.display = "block";
+
+    // Load analytics charts only when needed
+    if(id === "analytics"){
+        setTimeout(() => {
+            loadCharts();
+        }, 100);
+    }
+
+    // Load map when needed (if you already added this)
+    if(id === "map"){
+        setTimeout(() => {
+            initMap();
+        }, 100);
+    }
 }
 
-<div id="map" class="card section">
+// AUTO OPEN DASHBOARD ON LOAD
+window.onload = function(){
 
-    <h1>🚨 Live Emergency Map</h1>
+    showSection("dashboard");
 
-    <p>Real-time monitoring of active locations</p>
+    let name = localStorage.getItem("username");
+    let email = localStorage.getItem("email");
 
-    <div class="map-container">
+    if(name){
+        document.getElementById("adminName").innerText = name;
+    }
 
-        <iframe
-            src="https://www.openstreetmap.org/export/embed.html?bbox=72.8000%2C21.1500%2C72.9000%2C21.2500&layer=mapnik"
-            style="border:0; width:100%; height:450px;">
-        </iframe>
+    if(email){
+        document.getElementById("adminEmail").innerText = email;
+    }
+};
 
-    </div>
+// let map;
 
-</div>
+// function initMap(){
+
+//     map = L.map('map').setView([21.1702, 72.8311], 12);
+
+//     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//         attribution: '&copy; OpenStreetMap contributors'
+//     }).addTo(map);
+
+// }
+
+// window.onload = function(){
+//     showSection("dashboard");
+//     initMap();
+// };
+
+function addAlert(data){
+
+    let container = document.getElementById("alertList");
+
+    let card = document.createElement("div");
+    card.className = "alert-card";
+
+    card.innerHTML = `
+        <h3>🚨 SOS Alert</h3>
+        <p><b>User:</b> ${data.name}</p>
+        <p><b>Location:</b> ${data.location}</p>
+        <p><b>Time:</b> ${data.time}</p>
+
+        <span class="status pending">PENDING</span>
+    `;
+
+    container.prepend(card);
+}
+
+addAlert({
+    name: "Test User",
+    location: "Ahmedabad",
+    time: new Date().toLocaleString()
+});
+
+function animateCounter(id, target){
+
+    let el = document.getElementById(id);
+    let count = 0;
+
+    let interval = setInterval(() => {
+
+        count++;
+
+        el.innerText = count;
+
+        if(count >= target){
+            clearInterval(interval);
+        }
+
+    }, 20);
+}
+
+animateCounter("sosCount", 128);
+
+let lineChart, pieChart;
+
+function loadCharts(){
+
+    // LINE CHART (SOS TREND)
+    let ctx1 = document.getElementById("lineChart");
+
+    lineChart = new Chart(ctx1, {
+        type: "line",
+        data: {
+            labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            datasets: [{
+                label: "SOS Requests",
+                data: [12, 19, 8, 15, 22, 30, 25],
+                borderColor: "#082bee",
+                backgroundColor: "rgb(255, 255, 255)",
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+
+    // PIE CHART (CASE STATUS)
+    let ctx2 = document.getElementById("pieChart");
+
+    pieChart = new Chart(ctx2, {
+        type: "pie",
+        data: {
+            labels: ["Resolved", "Active", "Pending"],
+            datasets: [{
+                data: [60, 25, 15],
+                backgroundColor: ["#08f300", "#facc15", "#ff3b3b"]
+            }]
+        }
+    });
+}

@@ -140,3 +140,31 @@ function loadCharts(){
         }
     });
 }
+
+const searchInput = document.getElementById("searchInput");
+const statusFilter = document.getElementById("statusFilter");
+
+function filterRequests(){
+
+    const search = searchInput.value.toLowerCase();
+    const status = statusFilter.value;
+
+    document.querySelectorAll(".request-card").forEach(card=>{
+
+        const name = card.querySelector("h4").innerText.toLowerCase();
+
+        const matchesSearch = name.includes(search);
+
+        const matchesStatus =
+            status === "all" ||
+            card.classList.contains(status);
+
+        card.style.display =
+            matchesSearch && matchesStatus
+            ? "flex"
+            : "none";
+    });
+}
+
+searchInput.addEventListener("keyup", filterRequests);
+statusFilter.addEventListener("change", filterRequests);

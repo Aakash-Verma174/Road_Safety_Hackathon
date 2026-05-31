@@ -29,31 +29,185 @@
         <div id="dashboard" class="section">
             <h1>Dashboard</h1>
             <div class="map-container">
+            <div class="requests-box">
 
-    <iframe
-        src="https://www.openstreetmap.org/export/embed.html?bbox=72.8000%2C21.1500%2C72.9000%2C21.2500&layer=mapnik"
-        style="border:0; width:100%; height:450px; border-radius:15px;">
-    </iframe>
+    <div class="requests-header">
+
+        <h2>🚨 Live Emergency Requests</h2>
+
+        <div class="controls">
+            <input type="text" id="searchInput" placeholder="Search user...">
+
+            <select id="statusFilter">
+                <option value="all">All</option>
+                <option value="active">Active</option>
+                <option value="pending">Pending</option>
+                <option value="resolved">Resolved</option>
+            </select>
+        </div>
 
     </div>
-    
-      
-            
+
+    <div class="requests-list">
+
+        <div class="request-card active">
+            <img src="./assets/Profile_pic.jpg">
+            <div class="request-info">
+                <h4>Rahul Sharma</h4>
+                <span class="badge active-badge">Active</span>
+            </div>
+        </div>
+
+        <div class="request-card pending">
+            <img src="./assets/Profile_pic.jpg">
+            <div class="request-info">
+                <h4>Priya Patel</h4>
+                <span class="badge pending-badge">Pending</span>
+            </div>
+        </div>
+
+        <div class="request-card resolved">
+            <img src="./assets/Profile_pic.jpg">
+            <div class="request-info">
+                <h4>Kavya Soni</h4>
+                <span class="badge resolved-badge">Resolved</span>
+            </div>
+        </div>
+
+        <div class="request-card active">
+    <img src="./assets/Profile_pic.jpg">
+    <div class="request-info">
+        <h4>Aarav Shah</h4>
+        <span class="badge active-badge">Active</span>
+    </div>
+</div>
+
+<div class="request-card resolved">
+    <img src="./assets/Profile_pic.jpg">
+    <div class="request-info">
+        <h4>Neha Verma</h4>
+        <span class="badge resolved-badge">Resolved</span>
+    </div>
+</div>
+
+<div class="request-card pending">
+    <img src="./assets/Profile_pic.jpg">
+    <div class="request-info">
+        <h4>Rohan Mehta</h4>
+        <span class="badge pending-badge">Pending</span>
+    </div>
+</div>
+
+<div class="request-card active">
+    <img src="./assets/Profile_pic.jpg">
+    <div class="request-info">
+        <h4>Ananya Joshi</h4>
+        <span class="badge active-badge">Active</span>
+    </div>
+</div>
+
+<div class="request-card resolved">
+    <img src="./assets/Profile_pic.jpg">
+    <div class="request-info">
+        <h4>Vikram Patel</h4>
+        <span class="badge resolved-badge">Resolved</span>
+    </div>
+</div>
+
+<div class="request-card pending">
+    <img src="./assets/Profile_pic.jpg">
+    <div class="request-info">
+        <h4>Arjun Singh</h4>
+        <span class="badge pending-badge">Pending</span>
+    </div>
+</div>
+
+<div class="request-card active">
+    <img src="./assets/Profile_pic.jpg">
+    <div class="request-info">
+        <h4>Manthan Doshi</h4>
+        <span class="badge active-badge">Active</span>
+    </div>
+</div>
+
+<div class="request-card resolved">
+    <img src="./assets/Profile_pic.jpg">
+    <div class="request-info">
+        <h4>Sneha Kapoor</h4>
+        <span class="badge resolved-badge">Resolved</span>
+    </div>
+</div>
+
+<div class="request-card pending">
+    <img src="./assets/Profile_pic.jpg">
+    <div class="request-info">
+        <h4>Yash Trivedi</h4>
+        <span class="badge pending-badge">Pending</span>
+    </div>
+</div>
+
+<div class="request-card active">
+    <img src="./assets/Profile_pic.jpg">
+    <div class="request-info">
+        <h4>Pooja Nair</h4>
+        <span class="badge active-badge">Active</span>
+    </div>
+</div>
+
+<div class="request-card resolved">
+    <img src="./assets/Profile_pic.jpg">
+    <div class="request-info">
+        <h4>Harsh Pandya</h4>
+        <span class="badge resolved-badge">Resolved</span>
+    </div>
+</div>
+
+<div class="request-card pending">
+    <img src="./assets/Profile_pic.jpg">
+    <div class="request-info">
+        <h4>Meera Iyer</h4>
+        <span class="badge pending-badge">Pending</span>
+    </div>
+</div>
+
+<div class="request-card active">
+    <img src="./assets/Profile_pic.jpg">
+    <div class="request-info">
+        <h4>Dev Malhotra</h4>
+        <span class="badge active-badge">Active</span>
+    </div>
+</div>
+
+<div class="request-card resolved">
+    <img src="./assets/Profile_pic.jpg">
+    <div class="request-info">
+        <h4>Ishita Sharma</h4>
+        <span class="badge resolved-badge">Resolved</span>
+    </div>
+</div>
+
+        <!-- Copy 11 more cards to make total 14 -->
+
+    </div>
+
+</div>
+            </div>
+        
             <p>Welcome Admin 🚨 Control Room Active</p>
             <div class="stats">
 
     <div class="stat-card">
-        <h2 id="totalAlerts">12</h2>
+        <h2 id="totalAlerts">17</h2>
         <p>Total Alerts</p>
     </div>
 
     <div class="stat-card">
-        <h2 id="activeCases">3</h2>
+        <h2 id="activeCases">6</h2>
         <p>Active Cases</p>
     </div>
 
     <div class="stat-card">
-        <h2 id="resolvedCases">9</h2>
+        <h2 id="resolvedCases">5</h2>
         <p>Resolved</p>
     </div>
 

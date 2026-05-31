@@ -114,3 +114,58 @@ button:hover{
         transform:translateY(0);
     }
 }
+
+@media (max-width: 768px){
+
+    .login-box{
+        width:70%;
+        padding:20px;
+        border-radius:16px;
+    }
+
+    h1{
+        font-size:22px;
+    }
+
+    p{
+        font-size:14px;
+    }
+
+    input, 
+    .select-box select,
+    button{
+        font-size:15px;
+        padding:11px;
+    }
+}
+
+@media (max-width: 480px){
+
+    .login-box{
+        width:70%;
+        padding:18px;
+    }
+
+    h1{
+        font-size:20px;
+    }
+
+    input,
+    .select-box select,
+    button{
+        font-size:14px;
+        padding:10px;
+    }
+}
+
+input, button, select{
+    min-height:44px;
+}
+
+@media (max-width: 768px){
+
+    .overlay{
+        backdrop-filter: blur(6px);
+        padding:10px;
+    }
+}

@@ -539,3 +539,86 @@ body{
     color:#22c55e;
     font-weight:bold;
 }   
+
+.requests-box{
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.requests-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.controls{
+    display:flex;
+    gap:10px;
+}
+
+.controls input,
+.controls select{
+    padding:10px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+}
+
+.requests-list{
+    margin-top:20px;
+    max-height:500px;
+    overflow-y:auto;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.request-card{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:12px;
+    background:rgba(255,255,255,0.08);
+    border-radius:12px;
+    transition:.3s;
+}
+
+.request-card:hover{
+    transform:translateX(5px);
+    background-color: #e7deff67;
+}
+
+.request-card img{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.request-info{
+    flex:1;
+}
+
+.badge{
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+    color:white;
+}
+
+.active-badge{
+    background:#ef4444;
+}
+
+.pending-badge{
+    background:#f59e0b;
+}
+
+.resolved-badge{
+    background:#22c55e;
+}

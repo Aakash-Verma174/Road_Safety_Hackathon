@@ -1,202 +1,208 @@
 let userLocation = "";
 
+/* -----------------------------
+   LOCATION SYSTEM (FIXED)
+----------------------------- */
+
 const locationBtn = document.getElementById("locationBtn");
 const locationText = document.getElementById("locationText");
-const mapFrame = document.getElementById("mapFrame");
 
+if(locationBtn){
+    locationBtn.addEventListener("click", getLocation);
+}
 
-// SOS
-document.getElementById("sosBtn").addEventListener("click", () => {
+let locationEnabled = false;
 
-    if(!userLocation){
-        showToast("Get location first!", "error");
-        return;
-    }
+function getLocation(){
 
-    localStorage.setItem("sosStatus", "🚨 SOS INITIATED");
-    showToast("SOS Initiated", "error");
+    const btn = document.getElementById("locationBtn");
+    const locationText = document.getElementById("locationText");
 
-    setTimeout(() => {
-        localStorage.setItem("sosStatus", "📡 Location Sent");
-        showToast("Location Sent", "info");
-    }, 2000);
+    locationEnabled = !locationEnabled;
 
-    setTimeout(() => {
-        localStorage.setItem("sosStatus", "🚑 Ambulance Dispatched");
-        showToast("Ambulance Dispatched", "success");
-    }, 4000);
+    if(locationEnabled){
 
-    setTimeout(() => {
-        localStorage.setItem("sosStatus", "👮 Police Notified");
-        showToast("Police Notified", "success");
-    }, 6000);
+        const fakeLat = 23.0225;
+        const fakeLng = 72.5714;
 
-    setTimeout(() => {
-        localStorage.setItem("sosStatus", "✅ Emergency Active");
-        showToast("Help is on the way", "success");
-    }, 8000);
-
-});
-
-// SHARE
-document.getElementById("shareBtn").addEventListener("click", () => {
-    navigator.clipboard.writeText("Emergency Location: " + userLocation);
-    alert("Location Copied!");
-});
-
-// ACCIDENT SIMULATION
-document.getElementById("accidentBtn").addEventListener("click", () => {
-    alert("⚠ Accident Detected (Simulation)");
-    localStorage.setItem("sosStatus", "⚠ Accident Detected");
-});
-
-locationBtn.addEventListener("click", () => {
-
-    navigator.geolocation.getCurrentPosition((position) => {
-
-        let lat = position.coords.latitude;
-        let lon = position.coords.longitude;
-
-        userLocation = `https://www.google.com/maps?q=${lat},${lon}`;
+        btn.innerHTML = "📍 Location Detected";
+        btn.classList.add("location-active");
 
         locationText.innerHTML =
-            `Lat: ${lat} <br> Lon: ${lon}`;
+        `✅ Location Enabled (Demo Mode)<br>Lat: ${fakeLat}<br>Lng: ${fakeLng}`;
 
-        // 🔥 THIS IS IMPORTANT (MAP UPDATE)
-        document.getElementById("mapFrame").src =
-            `https://www.google.com/maps?q=${lat},${lon}&output=embed`;
+        addActivity("📍 Location ENABLED");
 
-    });
+    }else{
 
-});
+        btn.innerHTML = "📍 Get Current Location";
+        btn.classList.remove("location-active");
 
-function showToast(message, type="info"){
+        locationText.innerHTML =
+        "❌ Location Disabled";
 
-    const toast = document.createElement("div");
-
-    toast.innerText = message;
-
-    toast.style.position = "fixed";
-    toast.style.bottom = "20px";
-    toast.style.left = "50%";
-    toast.style.transform = "translateX(-50%)";
-
-    toast.style.padding = "12px 20px";
-    toast.style.borderRadius = "10px";
-    toast.style.color = "white";
-    toast.style.zIndex = "9999";
-
-    toast.style.background =
-        type === "error" ? "#ef4444" :
-        type === "success" ? "#22c55e" :
-        "#3b82f6";
-
-    document.body.appendChild(toast);
-
-    setTimeout(() => {
-        toast.remove();
-    }, 2000);
+        addActivity("📍 Location DISABLED");
+    }
 }
 
-const chatBtn = document.getElementById("chatFloatBtn");
+/* -----------------------------
+   ACTIVITY SYSTEM
+----------------------------- */
 
-let isDragging = false;
-let offsetX, offsetY;
+function addActivity(text){
 
-// click → open chat page
-chatBtn.addEventListener("click", () => {
-    window.location.href = "chat.html";
-});
+    const log = document.getElementById("activityLog");
 
-// drag start
-chatBtn.addEventListener("mousedown", (e) => {
-    isDragging = true;
-    offsetX = e.clientX - chatBtn.offsetLeft;
-    offsetY = e.clientY - chatBtn.offsetTop;
-});
+    if(!log) return;
 
-// drag move
-document.addEventListener("mousemove", (e) => {
+    const item = document.createElement("div");
+    item.className = "activity-item";
 
-    if(isDragging){
+    item.innerHTML = `
+        <span>⚡</span>
+        <p>${text}</p>
+    `;
 
-        chatBtn.style.left = (e.clientX - offsetX) + "px";
-        chatBtn.style.top = (e.clientY - offsetY) + "px";
+    log.prepend(item);
+}
+/* -----------------------------
+   SOS POPUP SYSTEM (CLEAN)
+----------------------------- */
 
-        chatBtn.style.right = "auto";
-        chatBtn.style.bottom = "auto";
-    }
-
-});
-
-// drag end
-document.addEventListener("mouseup", () => {
-    isDragging = false;
-});
-
-const enterBtn = document.getElementById("enterBtn");
-
-enterBtn.addEventListener("click", () => {
-
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-
-    // SIMPLE VALIDATION
-    if(username.trim() === "" || password.trim() === "") {
-        alert("Enter username and password");
-        return;
-    }
-
-    // FAKE LOGIN CHECK (for hackathon only)
-    if(password.length < 3){
-        alert("Password too weak");
-        return;
-    }
-
-    // store user
-    localStorage.setItem("roadUser", username);
-
-    // hide login
-    document.getElementById("loginOverlay").style.display = "none";
-
-    alert("Login Successful 🚨");
-
-});
-
-function loginUser(){
-
-    const user = document.getElementById("username").value;
-
-    if(user === ""){
-        alert("Enter username");
-        return;
-    }
-
-    localStorage.setItem("role", "user");
-
-    window.location.href = "chat.html";
+function openSOSPopup(){
+    document.getElementById("sosPopup").style.display = "flex";
 }
 
-function loginAdmin(){
+function closeSOSPopup(){
 
-    const user = document.getElementById("username").value;
+    const popup = document.getElementById("sosPopup");
 
-    if(user === ""){
-        alert("Enter username");
+    if(!popup) return;
+
+    popup.style.display = "none";
+
+    const main = document.getElementById("mainGrid");
+    const success = document.getElementById("successBox");
+
+    if(main) main.style.display = "grid";
+    if(success) success.style.display = "none";
+}
+
+/* -----------------------------
+   SOS SEND (SINGLE FINAL LOGIC)
+----------------------------- */
+
+function sendSOS(type){
+
+    if(!userLocation){
+        alert("⚠ Please enable location first");
         return;
     }
 
-    localStorage.setItem("role", "admin");
+    const main = document.getElementById("mainGrid");
+    const success = document.getElementById("successBox");
 
-    window.location.href = "dashboard.html";
+    if(main) main.style.display = "none";
+    if(success) success.style.display = "block";
+
+    const title = document.getElementById("selectedEmergency");
+    const desc = document.getElementById("emergencyDescription");
+
+    if(title) title.innerText = type;
+
+    let description = "";
+
+    switch(type){
+
+        case "🚗 Road Accidents":
+            description = "Car/bike crash, hit-and-run, pedestrian accident.";
+            break;
+
+        case "🚑 Medical Emergencies":
+            description = "Heart attack, fainting, serious injury.";
+            break;
+
+        case "🚧 Vehicle Breakdown":
+            description = "Engine failure, tyre burst, stuck vehicle.";
+            break;
+
+        case "🚓 Crime / Safety Threats":
+            description = "Robbery, harassment, suspicious activity.";
+            break;
+
+        case "🌧️ Road Hazards":
+            description = "Flood, fog, blocked road, landslide.";
+            break;
+
+        case "🧍 Missing / Stranded":
+            description = "Lost location, no contact, stranded alone.";
+            break;
+    }
+
+    if(desc) desc.innerText = description;
+
+    localStorage.setItem("lastAlert", type);
+
+    addActivity("🚨 SOS sent: " + type);
 }
 
-function sendSOS(){
+/* -----------------------------
+   SIMPLE LOGIN DISPLAY FIX
+----------------------------- */
 
-    let user = localStorage.getItem("user") || "Unknown";
+window.onload = () => {
 
-    let alert = {
-        name: user,
-        time: new Date()
+    const username = localStorage.getItem("roadUser");
+
+    const welcome = document.getElementById("welcomeUser");
+
+    if(username && welcome){
+        welcome.innerText = "Welcome, " + username;
     }
+};
+
+function sendSOS(type){
+
+    const messages = {
+        "Road Accident": "🚗 Accident reported",
+        "Medical": "🚑 Medical emergency reported",
+        "Breakdown": "🚧 Vehicle breakdown reported",
+        "Crime": "🚓 Crime or threat reported",
+        "Hazard": "🌧️ Road hazard reported",
+        "Stranded": "🧍 User is stranded"
+    };
+
+    // HIDE OPTIONS
+    document.getElementById("sosOptions").style.display = "none";
+
+    // SHOW RESULT (CENTERED)
+    document.getElementById("sosResult").style.display = "block";
+
+    document.getElementById("sosMessage").innerText =
+    messages[type];
+
+    addActivity("🚨 SOS: " + type);
+}
+
+function closeSOSPopup(){
+
+    document.getElementById("sosPopup").style.display = "none";
+
+    // RESET
+    document.getElementById("sosOptions").style.display = "block";
+    document.getElementById("sosResult").style.display = "none";
+}
+
+function closeSOSPopup(){
+
+    document.getElementById("sosPopup").style.display = "none";
+}
+
+function closeSOSPopup(){
+
+    document.getElementById("sosPopup").style.display = "none";
+
+    document.getElementById("mainGrid").style.display = "grid";
+
+    document.getElementById("resultBox").style.display = "none";
 }

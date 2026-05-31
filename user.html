@@ -18,6 +18,10 @@
     <div class="top-bar">
         🚨 RoadSOS Emergency Response System
     </div>
+    <div class="welcome-box">
+    <h2 id="welcomeUser">Welcome User</h2>
+    <span id="userStatus">🟢 Safe</span>
+</div>
 
     <h1>RoadSOS</h1>
     <p class="subtitle">Instant Emergency Assistance at One Tap</p>
@@ -29,17 +33,15 @@
     </div>
 
     <!-- MAIN ACTIONS -->
-    <div class="action-box">
+<div class="action-box">
+    <button class="sos-launch-btn" onclick="openSOSPopup()">
+    🚨 EMERGENCY SOS
+    </button>
 
-        <button onclick="sendSOS()" class="sos-btn">🚨 SOS</button>
 
-        <button id="shareBtn">📤 SHARE LOCATION</button>
+</div>
 
-        <button id="accidentBtn">⚠ SIMULATE ACCIDENT</button>
 
-    </div>
-
-   
 
     <!-- LOCATION SECTION -->
     <div class="location-box">
@@ -51,7 +53,37 @@
     </div>
 
 
-<div id="chatFloatBtn">💬</div>
+<!-- <div id="chatFloatBtn">💬</div> -->
+
+<div class="activity-box">
+
+    <h2>📋 Recent Activity</h2>
+
+    <div id="activityLog" class="activity-log">
+
+        <div class="activity-item">
+            <span>🟢</span>
+            <p>System initialized successfully</p>
+        </div>
+
+        <div class="activity-item">
+            <span>📡</span>
+            <p>GPS service ready for location tracking</p>
+        </div>
+
+        <div class="activity-item">
+            <span>🚨</span>
+            <p>Emergency response network online</p>
+        </div>
+
+        <div class="activity-item">
+            <span>👤</span>
+            <p>User session authenticated</p>
+        </div>
+
+    </div>
+
+</div>
 
     <!-- FOOTER -->
     <div class="footer">
@@ -61,6 +93,55 @@
 </div>
 
 <script src="./user.js"></script>
+
+<div id="sosPopup" class="sos-overlay">
+
+    <div class="sos-popup">
+
+        <!-- STEP 1: OPTIONS -->
+        <div id="sosOptions">
+
+            <h2>🚨 Select Emergency Type</h2>
+
+            <div class="sos-grid">
+
+                <button onclick="sendSOS('Road Accident')">🚗 Accident</button>
+                <button onclick="sendSOS('Medical')">🚑 Medical</button>
+                <button onclick="sendSOS('Breakdown')">🚧 Breakdown</button>
+                <button onclick="sendSOS('Crime')">🚓 Crime</button>
+                <button onclick="sendSOS('Hazard')">🌧️ Hazard</button>
+                <button onclick="sendSOS('Stranded')">🧍 Stranded</button>
+
+            </div>
+
+        </div>
+
+        <!-- STEP 2: RESULT (CENTERED) -->
+        <div id="sosResult" style="display:none; text-align:center;">
+            <h2>🚨 SOS DETECTED</h2>
+            <p id="sosMessage"></p>
+            <button class="close-btn" onclick="closeSOSPopup ()">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+</div>
+
+<footer class="demo-footer">
+
+    <p>🚨 RoadSOS Emergency Response System</p>
+
+    <p class="disclaimer">
+        ⚠ This is a <b>demo/hackathon project</b> created for educational purposes only.
+        It does not represent a real emergency service.
+    </p>
+
+    <p class="small-text">
+        Built for innovation in road safety and emergency response systems.
+    </p>
+
+</footer>
 
 </body>
 </html>
